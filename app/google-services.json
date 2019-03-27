@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "934914239470",
+    "firebase_url": "https://telemo.firebaseio.com",
+    "project_id": "telemo",
+    "storage_bucket": "telemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934914239470:android:0cbfc0f44d6ab0be",
+        "android_client_info": {
+          "package_name": "com.choo827.telemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934914239470-oi827q7rdb6qv7joojh3dpc1uhsqdcmr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.choo827.telemo",
+            "certificate_hash": "6a642adb216665d305d3b5b465c316e0b55b27ca"
+          }
+        },
+        {
+          "client_id": "934914239470-edkvk94t0pbo6mf3vqre4mp773dmn727.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYQN0wjujC78PD4yg1mgq1YcKrfAr7Jzw"
+        },
+        {
+          "current_key": "AIzaSyB2nm6zI6lCy4_II5vyZC_MHalOTuABqgA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934914239470-tr2vfkmaee8s4g90pijn2taltqm3mve0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
