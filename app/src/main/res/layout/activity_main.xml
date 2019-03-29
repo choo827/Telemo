@@ -12,6 +12,8 @@
     <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
+            app:fabCradleRoundedCornerRadius="4dp"
+            app:fabCradleMargin="8dp"
             android:layout_height="?actionBarSize"
             android:layout_gravity="bottom"
             app:backgroundTint="@color/colorPrimary"
