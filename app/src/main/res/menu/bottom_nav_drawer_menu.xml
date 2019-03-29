@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 >
-    <group android:checkableBehavior="none">
+    <group android:checkableBehavior="single">
         <item
                 android:id="@+id/nav1"
                 android:icon="@drawable/ic_inbox"
-                android:title="전화번호"/>
+                android:title="전화번호"
+        />
         <item
                 android:id="@+id/nav2"
                 android:icon="@drawable/ic_star"
