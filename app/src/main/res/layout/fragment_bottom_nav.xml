@@ -5,14 +5,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <TextView android:layout_width="match_parent"
-              android:layout_height="24dp"
-              android:text="choo82742@gmail.com"
-              app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintBottom_toTopOf="@+id/navigation_view" android:id="@+id/textView"
-              android:layout_marginStart="18dp"
-              android:textColor="#fff"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:text="choo82742@gmail.com"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/navigation_view"
+            android:id="@+id/textView"
+            android:layout_marginStart="18dp"
+            android:textColor="#fff"/>
 
     <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation_view"

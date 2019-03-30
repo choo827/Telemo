@@ -16,6 +16,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(bottomAppBar)
+
+        supportFragmentManager.beginTransaction().replace(R.id.content_layout, MainFragment()).commit()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
