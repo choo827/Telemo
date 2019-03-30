@@ -26,13 +26,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-//            R.id.app_bar_fav -> toast("Fav menu item is clicked!")
             R.id.app_bar_search -> toast("Search menu item is clicked!")
             android.R.id.home -> {
                 val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
                 bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
             }
-//            R.id.app_bar_settings -> toast("Settings item is clicked!")
         }
 
         return true

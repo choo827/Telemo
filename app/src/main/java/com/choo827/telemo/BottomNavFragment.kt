@@ -3,24 +3,31 @@ package com.choo827.telemo
 
 import android.content.Context
 import android.os.Bundle
-import android.view.Gravity
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_bottom_nav.*
+import kotlinx.android.synthetic.main.fragment_bottom_nav.view.*
 
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class BottomNavigationDrawerFragment: RoundedBottomSheetDialogFragment() {
+class BottomNavigationDrawerFragment : RoundedBottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_bottom_nav, container, false)
+        val view = inflater.inflate(R.layout.fragment_bottom_nav, container, false)
+
+        view.expanded_menu.setOnClickListener {
+            this.dismiss()
+        }
+
+        view.setting.setOnClickListener {
+
+        }
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -28,12 +35,13 @@ class BottomNavigationDrawerFragment: RoundedBottomSheetDialogFragment() {
 
         navigation_view.setNavigationItemSelectedListener { menuItem ->
             // Bottom Navigation Drawer menu item clicks
-            when (menuItem!!.itemId) {
+            when (menuItem.itemId) {
                 R.id.nav1 -> context!!.toast("1번 클릭")
                 R.id.nav2 -> context!!.toast("2번 클릭")
+//                R.id.app_bar_setting -> context!!.toast("setting")
+//                android.R.id.home -> this.dismiss()
             }
-            // Add code here to update the UI based on the item selected
-            // For example, swap UI fragments here
+
             true
         }
     }

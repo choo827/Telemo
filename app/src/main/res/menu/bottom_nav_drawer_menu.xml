@@ -6,7 +6,7 @@
                 android:id="@+id/nav1"
                 android:icon="@drawable/ic_inbox"
                 android:title="전화번호"
-        />
+                android:checked="true"/>
         <item
                 android:id="@+id/nav2"
                 android:icon="@drawable/ic_star"
