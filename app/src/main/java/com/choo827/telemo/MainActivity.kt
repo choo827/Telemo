@@ -19,6 +19,14 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction().replace(R.id.content_layout, MainFragment()).commit()
 
+        addBtn.setOnClickListener {
+            switchToAddFragment()
+        }
+
+    }
+
+    private fun switchToAddFragment() {
+        supportFragmentManager.beginTransaction().replace(R.id.content_layout, AddFragment()).commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
