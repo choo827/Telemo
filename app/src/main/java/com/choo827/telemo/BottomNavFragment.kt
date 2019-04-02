@@ -1,6 +1,7 @@
 package com.choo827.telemo
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -28,7 +29,8 @@ class BottomNavigationDrawerFragment : RoundedBottomSheetDialogFragment(),
         }
 
         view.setting.setOnClickListener {
-            switchToSettingFragment()
+            val gotoSetting = Intent(context, SettingActivity::class.java)
+            startActivity(gotoSetting)
         }
         return view
     }
@@ -56,10 +58,5 @@ class BottomNavigationDrawerFragment : RoundedBottomSheetDialogFragment(),
     private fun switchToStarFragment() {
         val manager = fragmentManager
         manager!!.beginTransaction().replace(R.id.content_layout, StarFragment()).commit()
-    }
-
-    private fun switchToSettingFragment() {
-        val manager = fragmentManager
-        manager!!.beginTransaction().replace(R.id.content_layout, SettingFragment()).commit()
     }
 }
