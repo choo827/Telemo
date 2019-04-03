@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,23 +21,22 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.content_layout, MainFragment()).commit()
 
         addBtn.setOnClickListener {
-            switchToAddFragment()
+            val bottomWriteFragment = BottomWriteFragment()
+            bottomWriteFragment.show(supportFragmentManager, bottomWriteFragment.tag)
         }
-
     }
 
-    private fun switchToAddFragment() {
-        supportFragmentManager.beginTransaction().replace(R.id.content_layout, AddFragment()).commit()
-    }
+//    private fun switchToAddFragment() {
+//        supportFragmentManager.beginTransaction().replace(R.id.content_layout, AddFragment()).commit()
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.bottomappbar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            R.id.app_bar_search -> toast("Search menu item is clicked!")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
             android.R.id.home -> {
                 val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
                 bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
@@ -44,11 +44,5 @@ class MainActivity : AppCompatActivity() {
         }
 
         return true
-    }
-
-    fun Context.toast(message: CharSequence) {
-        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
-        toast.setGravity(Gravity.BOTTOM, 0, 325)
-        toast.show()
     }
 }
