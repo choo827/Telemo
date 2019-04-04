@@ -1,13 +1,9 @@
 package com.choo827.telemo
 
-import android.content.Context
 import android.os.Bundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,8 +16,15 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction().replace(R.id.content_layout, MainFragment()).commit()
 
+//        val userName = intent.extras.getString("name")
+        val userUid = intent.extras.getString("uid")
+//        val userEmail = intent.extras.getString("email")
+
         addBtn.setOnClickListener {
             val bottomWriteFragment = BottomWriteFragment()
+            val bundle = Bundle(1)
+            bundle.putString("userUid", userUid)
+            bottomWriteFragment.arguments = bundle
             bottomWriteFragment.show(supportFragmentManager, bottomWriteFragment.tag)
         }
     }
