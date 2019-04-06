@@ -4,17 +4,26 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
+import android.content.ClipData.Item
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
+
+
+
 
 class MainActivity : AppCompatActivity() {
+    private var adapter: PeopleAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(bottomAppBar)
-
-        supportFragmentManager.beginTransaction().replace(R.id.content_layout, MainFragment()).commit()
 
 //        val userName = intent.extras.getString("name")
         val userUid = intent.extras.getString("uid")
@@ -27,6 +36,17 @@ class MainActivity : AppCompatActivity() {
             bottomWriteFragment.arguments = bundle
             bottomWriteFragment.show(supportFragmentManager, bottomWriteFragment.tag)
         }
+
+
+
+        val db = FirebaseFirestore.getInstance()
+        val query = db.collection(userUid.toString())
+        val options = FirestoreRecyclerOptions.Builder<PhoneNumber>()
+            .setQuery(query, PhoneNumber::class.java).build()
+
+        adapter = PeopleAdapter(options)
+        rvMain.adapter = adapter
+        rvMain.layoutManager = LinearLayoutManager(this)
     }
 
 //    private fun switchToAddFragment() {
@@ -47,5 +67,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         return true
+    }
+
+    override fun onStart() {
+        super.onStart()
+        adapter!!.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        if (adapter != null) {
+            adapter!!.stopListening()
+        }
     }
 }
