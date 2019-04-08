@@ -3,11 +3,9 @@ package com.choo827.telemo
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import kotlinx.android.synthetic.main.fragment_bottom_write.view.*
 import kotlinx.android.synthetic.main.viewholer_people.view.*
 
 class PeopleAdapter(options: FirestoreRecyclerOptions<PhoneNumber>) :
@@ -21,7 +19,6 @@ class PeopleAdapter(options: FirestoreRecyclerOptions<PhoneNumber>) :
         peopleViewHolder.setPhoneBook(phoneNumber.name, phoneNumber.number)
     }
 
-
     class PeopleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setPhoneBook(phoneName: String, phoneNumber: String) {
             val nameView = itemView.holderName
@@ -30,5 +27,6 @@ class PeopleAdapter(options: FirestoreRecyclerOptions<PhoneNumber>) :
             phoneView.text = phoneNumber
         }
     }
+
 
 }
