@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
 //        val userName = intent.extras.getString("name")
         val userUid = intent.extras.getString("uid")
-//        val userEmail = intent.extras.getString("email")
+        val userEmail = intent.extras.getString("email")
 
         addBtn.setOnClickListener {
             val bottomWriteFragment = BottomWriteFragment()
@@ -57,6 +57,9 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             android.R.id.home -> {
                 val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
+//                val bundle = Bundle(1)
+//                bundle.putString("userUid", userEmail)
+//                bottomNavDrawerFragment.arguments = bundle
                 bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
             }
         }

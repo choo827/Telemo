@@ -4,7 +4,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/content_layout">
+        android:id="@+id/content_layout"
+        android:background="@color/colorPrimaryDark">
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMain"

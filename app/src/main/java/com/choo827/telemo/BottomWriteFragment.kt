@@ -2,11 +2,13 @@ package com.choo827.telemo
 
 
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_bottom_write.*
 import kotlinx.android.synthetic.main.fragment_bottom_write.view.*
 import java.util.*
 
@@ -23,6 +25,8 @@ class BottomWriteFragment : RoundedBottomSheetDialogFragment() {
         val db = FirebaseFirestore.getInstance()
         val userId = arguments?.getString("userUid")
 
+        view.phoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+
         view.saveBtn.setOnClickListener {
             val phoneNumber = view.phoneNumber.text.toString()
             val name = view.name.text.toString()
@@ -35,6 +39,10 @@ class BottomWriteFragment : RoundedBottomSheetDialogFragment() {
             view.phoneNumber.text = Editable.Factory.getInstance().newEditable("")
             view.name.text = Editable.Factory.getInstance().newEditable("")
 
+            dismiss()
+        }
+
+        view.expandBtn.setOnClickListener {
             dismiss()
         }
 
