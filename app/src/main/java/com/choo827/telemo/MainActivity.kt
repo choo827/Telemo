@@ -1,8 +1,12 @@
 package com.choo827.telemo
 
+import android.app.PendingIntent.getActivity
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -20,9 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(bottomAppBar)
 
-//        val userName = intent.extras.getString("name")
         val userUid = intent.extras.getString("uid")
-        val userEmail = intent.extras.getString("email")
+
 
         addBtn.setOnClickListener {
             val bottomWriteFragment = BottomWriteFragment()
@@ -30,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             bundle.putString("userUid", userUid)
             bottomWriteFragment.arguments = bundle
             bottomWriteFragment.show(supportFragmentManager, bottomWriteFragment.tag)
+//            showKeyboard(view)
         }
 
 
@@ -56,10 +60,11 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
+                val userEmail = intent.extras.getString("email")
                 val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
-//                val bundle = Bundle(1)
-//                bundle.putString("userUid", userEmail)
-//                bottomNavDrawerFragment.arguments = bundle
+                val bundle = Bundle(1)
+                bundle.putString("userEmail", userEmail)
+                bottomNavDrawerFragment.arguments = bundle
                 bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
             }
         }
@@ -78,5 +83,11 @@ class MainActivity : AppCompatActivity() {
         if (adapter != null) {
             adapter!!.stopListening()
         }
+    }
+
+    fun showKeyboard(view: View?) {
+        if (view == null) return
+        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
     }
 }

@@ -15,6 +15,8 @@
     <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="bottomSheetStyle">@style/BottomSheet</item>
+        <item name="android:windowSoftInputMode">adjustResize|stateVisible</item>
+        <item name="android:focusableInTouchMode">true</item>
     </style>
 
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog"/>

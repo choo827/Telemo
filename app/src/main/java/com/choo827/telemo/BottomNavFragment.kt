@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.fragment_bottom_nav.*
+import kotlinx.android.synthetic.main.fragment_bottom_nav.view.*
 
 
 /**
@@ -22,6 +23,10 @@ class BottomNavigationDrawerFragment : RoundedBottomSheetDialogFragment(),
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_bottom_nav, container, false)
+
+        val userEmail = arguments?.getString("userEmail")
+        view.emailView.text = userEmail.toString()
+
 
         return view
     }

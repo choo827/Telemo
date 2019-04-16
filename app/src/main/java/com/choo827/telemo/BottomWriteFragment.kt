@@ -1,12 +1,15 @@
 package com.choo827.telemo
 
 
+import android.content.Context
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_bottom_write.*
 import kotlinx.android.synthetic.main.fragment_bottom_write.view.*
@@ -45,6 +48,8 @@ class BottomWriteFragment : RoundedBottomSheetDialogFragment() {
         view.expandBtn.setOnClickListener {
             dismiss()
         }
+
+
 
         return view
     }
