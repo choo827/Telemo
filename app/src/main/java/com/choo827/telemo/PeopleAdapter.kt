@@ -16,15 +16,33 @@ class PeopleAdapter(options: FirestoreRecyclerOptions<PhoneNumber>) :
     }
 
     override fun onBindViewHolder(peopleViewHolder: PeopleViewHolder, position: Int, phoneNumber: PhoneNumber) {
-        peopleViewHolder.setPhoneBook(phoneNumber.name, phoneNumber.number)
+        peopleViewHolder.setPhoneBook(phoneNumber.name, phoneNumber.number, phoneNumber.etc)
     }
 
     class PeopleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun setPhoneBook(phoneName: String, phoneNumber: String) {
+        fun setPhoneBook(phoneName: String, phoneNumber: String, phoneEtc: String) {
             val nameView = itemView.holderName
             val phoneView = itemView.holderNumber
+            val etcView = itemView.holderEtc
+            val moreBtn = itemView.moreBtn
+
+
             nameView.text = phoneName
             phoneView.text = phoneNumber
+            etcView.text = phoneEtc
+
+            moreBtn.setOnClickListener { view ->
+                if (phoneView.visibility == View.GONE) {
+                    phoneView.visibility = View.VISIBLE
+                    etcView.visibility = View.VISIBLE
+                    moreBtn.setImageResource(R.drawable.ic_expand_less)
+                } else {
+                    phoneView.visibility = View.GONE
+                    etcView.visibility = View.GONE
+                    moreBtn.setImageResource(R.drawable.ic_expand_card)
+                }
+            }
+
         }
     }
 

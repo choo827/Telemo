@@ -33,8 +33,9 @@ class BottomWriteFragment : RoundedBottomSheetDialogFragment() {
         view.saveBtn.setOnClickListener {
             val phoneNumber = view.phoneNumber.text.toString()
             val name = view.name.text.toString()
+            val etc = view.etc.text.toString()
 
-            val data = PhoneNumber(phoneNumber, name, timeGenerator())
+            val data = PhoneNumber(phoneNumber, name, etc)
             db.collection(userId.toString()).document(timeGenerator()).set(data)
 //                .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
 //                .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
