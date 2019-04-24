@@ -24,24 +24,11 @@ class PeopleAdapter(options: FirestoreRecyclerOptions<PhoneNumber>) :
             val nameView = itemView.holderName
             val phoneView = itemView.holderNumber
             val etcView = itemView.holderEtc
-            val moreBtn = itemView.moreBtn
 
 
             nameView.text = phoneName
             phoneView.text = phoneNumber
             etcView.text = phoneEtc
-
-            moreBtn.setOnClickListener { view ->
-                if (phoneView.visibility == View.GONE) {
-                    phoneView.visibility = View.VISIBLE
-                    etcView.visibility = View.VISIBLE
-                    moreBtn.setImageResource(R.drawable.ic_expand_less)
-                } else {
-                    phoneView.visibility = View.GONE
-                    etcView.visibility = View.GONE
-                    moreBtn.setImageResource(R.drawable.ic_expand_card)
-                }
-            }
 
         }
     }
