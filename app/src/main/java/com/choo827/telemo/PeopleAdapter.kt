@@ -29,7 +29,6 @@ class PeopleAdapter(options: FirestoreRecyclerOptions<PhoneNumber>) :
             nameView.text = phoneName
             phoneView.text = phoneNumber
             etcView.text = phoneEtc
-
         }
     }
 
