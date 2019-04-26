@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         val options = FirestoreRecyclerOptions.Builder<PhoneNumber>()
             .setQuery(query, PhoneNumber::class.java).build()
 
-        adapter = PeopleAdapter(options)
+        adapter = PeopleAdapter(options, userUid, this)
         rvMain.adapter = adapter
         rvMain.layoutManager = LinearLayoutManager(this)
     }
