@@ -28,6 +28,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintTop_toBottomOf="@+id/emailView"
+            app:itemTextColor="#fff"
+            app:itemIconTint="#fff"
             android:background="@drawable/bottom_nav_mid_corner"/>
 
 

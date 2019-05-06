@@ -27,7 +27,6 @@
                     android:layout_height="24dp"
                     android:fontFamily="@font/inter_regular"
                     android:text="Name"
-                    android:gravity="bottom"
                     android:textSize="15sp"
                     app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="16dp"
