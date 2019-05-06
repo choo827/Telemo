@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_bottom_nav.*
 import kotlinx.android.synthetic.main.fragment_bottom_nav.view.*
 
@@ -35,8 +36,10 @@ class BottomNavigationDrawerFragment : RoundedBottomSheetDialogFragment(),
         // Bottom Navigation Drawer menu item clicks
         when (item.itemId) {
             R.id.nav1 -> {
-                val gotoSetting = Intent(context, SettingActivity::class.java)
-                startActivity(gotoSetting)
+                FirebaseAuth.getInstance().signOut()
+                val logout = Intent(context, AuthActivity::class.java)
+                startActivity(logout)
+                dismiss()
             }
         }
         return true

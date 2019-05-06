@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         rvMain.adapter = adapter
         rvMain.layoutManager = LinearLayoutManager(this)
 
-        query.addSnapshotListener { snapshot, exception ->
+        query.addSnapshotListener { snapshot, _ ->
             if (snapshot != null) {
                 if (snapshot.isEmpty) {
                     noData.visibility = View.VISIBLE
