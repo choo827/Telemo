@@ -5,6 +5,6 @@
         <item
                 android:id="@+id/nav1"
                 android:icon="@drawable/ic_settings"
-                android:title="설정"/>
+                android:title="로그아웃"/>
     </group>
 </menu>

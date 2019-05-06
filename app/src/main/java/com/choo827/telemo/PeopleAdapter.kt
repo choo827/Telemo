@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.viewholer_people.view.*
 
 
@@ -29,8 +30,8 @@ class PeopleAdapter(options: FirestoreRecyclerOptions<PhoneNumber>, userUid: Str
 
     override fun onBindViewHolder(peopleViewHolder: PeopleViewHolder, position: Int, phoneNumber: PhoneNumber) {
         val db = FirebaseFirestore.getInstance()
-
         peopleViewHolder.setPhoneBook(phoneNumber.name, phoneNumber.number, phoneNumber.etc)
+
         peopleViewHolder.callBtn.setOnClickListener {
             val call = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phoneNumber.number}"))
             context.startActivity(call)

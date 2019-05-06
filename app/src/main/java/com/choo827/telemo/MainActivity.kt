@@ -1,8 +1,8 @@
 package com.choo827.telemo
 
-import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
         val db = FirebaseFirestore.getInstance()
         val query = db.collection(userUid.toString())
         val options = FirestoreRecyclerOptions.Builder<PhoneNumber>()
@@ -46,6 +45,16 @@ class MainActivity : AppCompatActivity() {
         adapter = PeopleAdapter(options, userUid, this)
         rvMain.adapter = adapter
         rvMain.layoutManager = LinearLayoutManager(this)
+
+        query.addSnapshotListener { snapshot, exception ->
+            if (snapshot != null) {
+                if (snapshot.isEmpty) {
+                    noData.visibility = View.VISIBLE
+                } else {
+                    noData.visibility = View.GONE
+                }
+            }
+        }
     }
 
 //    private fun switchToAddFragment() {
