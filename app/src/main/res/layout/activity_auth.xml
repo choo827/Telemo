@@ -6,16 +6,49 @@
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
         tools:context=".AuthActivity">
+    <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="436dp"
+            android:src="@drawable/ill_auth"
+            android:id="@+id/appCompatImageView"
+            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/appCompatTextView2"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.google.android.gms.common.SignInButton
-            android:id="@+id/gBtn"
+    <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="284dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="676dp"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_height="wrap_content"
+            android:text="Telemo에 오신 것을 환영합니다"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:id="@+id/appCompatTextView2"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/appCompatTextView"/>
 
-    </com.google.android.gms.common.SignInButton>
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="간편하게 전화번호를 관리하세요."
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/appCompatTextView" android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/gBtn"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/gBtn"
+            android:background="@drawable/btn_conner"
+            android:text="시작하기"
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="64dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+    >
+
+    </androidx.appcompat.widget.AppCompatButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
