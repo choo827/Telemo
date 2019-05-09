@@ -37,8 +37,6 @@ class BottomNavigationDrawerFragment : RoundedBottomSheetDialogFragment(),
         when (item.itemId) {
             R.id.nav1 -> {
                 FirebaseAuth.getInstance().signOut()
-                val logout = Intent(context, AuthActivity::class.java)
-                startActivity(logout)
                 dismiss()
             }
         }

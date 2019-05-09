@@ -1,12 +1,10 @@
 package com.choo827.telemo
 
-import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -70,32 +68,33 @@ class AuthActivity : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithCredential:success")
-
-                    val user = FirebaseAuth.getInstance().currentUser
-                    val gotomain = Intent(this, MainActivity::class.java)
-                    if (user != null) {
-                        gotomain.putExtra("uid", user.uid)
-                        gotomain.putExtra("email", user.email)
-                        gotomain.putExtra("name", user.displayName)
-                    }
-
-                    startActivity(gotomain)
+                    startActivity(MainActivity.getLaunchIntent(this))
                     finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     Snackbar.make(main_layout, "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
-//                    updateUI(null)
                 }
-
-                // ...
             }
     }
 
     companion object {
         private const val TAG = "GoogleActivity"
         private const val RC_SIGN_IN = 9001
+
+        fun getLaunchIntent(from: Context) = Intent(from, AuthActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        }
     }
+
+    override fun onStart() {
+        super.onStart()
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            startActivity(MainActivity.getLaunchIntent(this))
+            finish()
+        }
+    }
+
+
 }
