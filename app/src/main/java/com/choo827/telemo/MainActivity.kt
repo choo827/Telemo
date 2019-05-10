@@ -49,12 +49,11 @@ class MainActivity : AppCompatActivity() {
             bundle.putString("userUid", userUid)
             bottomWriteFragment.arguments = bundle
             bottomWriteFragment.show(supportFragmentManager, bottomWriteFragment.tag)
-//            showKeyboard(view)
         }
 
 
         val db = FirebaseFirestore.getInstance()
-        val query = db.collection(userUid.toString())
+        val query = db.collection(userUid)
         val options = FirestoreRecyclerOptions.Builder<PhoneNumber>()
             .setQuery(query, PhoneNumber::class.java).build()
 
@@ -107,12 +106,6 @@ class MainActivity : AppCompatActivity() {
         if (adapter != null) {
             adapter!!.stopListening()
         }
-    }
-
-    fun showKeyboard(view: View?) {
-        if (view == null) return
-        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
     }
 
     companion object {
