@@ -21,7 +21,7 @@ class BottomWriteFragment : RoundedBottomSheetDialogFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_bottom_write, container, false)
-        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE or WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
         val db = FirebaseFirestore.getInstance()
@@ -81,6 +81,5 @@ class BottomWriteFragment : RoundedBottomSheetDialogFragment() {
 
         return yearStr + monthStr + dateStr + hourStr + minuteStr + secondStr
     }
-
 
 }
