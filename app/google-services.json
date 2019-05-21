@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "934914239470-oi827q7rdb6qv7joojh3dpc1uhsqdcmr.apps.googleusercontent.com",
+          "client_id": "934914239470-e0r9d8a05k66lltf1herg8dtcke0dpb9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.choo827.telemo",
+            "certificate_hash": "54540e0d82da807f9b41082cd2e0b1f2d9594dec"
+          }
+        },
+        {
+          "client_id": "934914239470-3ce1lvmjjcv238e5au1dkq865sqr64fr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.choo827.telemo",
@@ -23,33 +31,23 @@
           }
         },
         {
-          "client_id": "934914239470-edkvk94t0pbo6mf3vqre4mp773dmn727.apps.googleusercontent.com",
+          "client_id": "934914239470-mb75v5t326qbnpqdubnml68org3migd6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBYQN0wjujC78PD4yg1mgq1YcKrfAr7Jzw"
-        },
-        {
-          "current_key": "AIzaSyB2nm6zI6lCy4_II5vyZC_MHalOTuABqgA"
+          "current_key": "AIzaSyDGAWC-3IQI5p8HNctC20KYQ0ANxaHM9-s"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "934914239470-tr2vfkmaee8s4g90pijn2taltqm3mve0.apps.googleusercontent.com",
+              "client_id": "934914239470-mb75v5t326qbnpqdubnml68org3migd6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

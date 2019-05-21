@@ -20,5 +20,39 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keepattributes Signature
+# Firebase Authentication
 -keepattributes *Annotation*
+
+# Firebase Realtime database
+-keepattributes Signature
+
+# 소스 파일 변수 명 바꾸는 옵션
+-renamesourcefileattribute SourceFile
+
+# Error Log의 Line & ClassName
+-keepattributes SourceFile,LineNumberTable
+
+# Exception
+-keep public class * extends java.lang.Exception
+
+# 사용하지 않는 메소드 유지
+-dontshrink
+
+# Firebase Crashlytics
+-keep class com.crashlytics.** { *; }
+-dontwarn com.crashlytics.**
+
+# 없애면 난독화 하지 않음
+#-dontobfuscate
+
+# 없애면 최적화 하지 않음
+#-dontoptimize
+
+# 없애면 manifest 난독화 하지 않음
+#-keepresourcexmlattributenames manifest/**
+
+# 빌드 후 mapping seed usage cofing 파일을 만들어주는 옵션
+#-printmapping map.txt
+#-printseeds seed.txt
+#-printusage usage.txt
+#-printconfiguration config.txt

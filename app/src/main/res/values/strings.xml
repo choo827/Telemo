@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Telemo</string>
-    <string name="loading">Loding...</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="server_client_id">934914239470-mb75v5t326qbnpqdubnml68org3migd6.apps.googleusercontent.com</string>
 
 </resources>
