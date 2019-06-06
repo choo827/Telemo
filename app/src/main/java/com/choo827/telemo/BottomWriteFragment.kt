@@ -2,6 +2,8 @@ package com.choo827.telemo
 
 
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,35 +29,36 @@ class BottomWriteFragment : DialogFragment() {
         val view = inflater.inflate(R.layout.fragment_bottom_write, container, false)
         view.toolbar.setNavigationIcon(R.drawable.ic_close_drawer)
         view.toolbar.setNavigationOnClickListener { dismiss() }
-
-        val db = FirebaseFirestore.getInstance()
-        val userId = arguments?.getString("userUid")
-
-//        view.phoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
-//
-//        view.saveBtn.setOnClickListener {
-//            val phoneNumber = view.phoneNumber.text.toString()
-//            val name = view.name.text.toString()
-//            val etc = view.etc.text.toString()
-//
-//            val data = PhoneNumber(phoneNumber, name, etc, timeGenerator())
-//            db.collection(userId.toString()).document(timeGenerator()).set(data)
-////                .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
-////                .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-//
-//            view.phoneNumber.text = Editable.Factory.getInstance().newEditable("")
-//            view.name.text = Editable.Factory.getInstance().newEditable("")
-//
-//            dismiss()
-//        }
-//
-//        view.expandBtn.setOnClickListener {
-//            dismiss()
-//        }
+        view.phoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
 
 
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        toolbar.inflateMenu(R.menu.dialog_menu)
+        toolbar.setOnMenuItemClickListener {
+            val db = FirebaseFirestore.getInstance()
+            val userId = arguments?.getString("userUid")
+            val phoneNumber = view.phoneNumber.text.toString()
+            val name = view.name.text.toString()
+            val etc = view.etc.text.toString()
+
+            val data = PhoneNumber(phoneNumber, name, etc, timeGenerator())
+            db.collection(userId.toString()).document(timeGenerator()).set(data)
+//                .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+//                .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+
+            view.phoneNumber.text = Editable.Factory.getInstance().newEditable("")
+            view.name.text = Editable.Factory.getInstance().newEditable("")
+
+            dismiss()
+            true
+
+        }
+
     }
 
     override fun onStart() {
