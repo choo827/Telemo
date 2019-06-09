@@ -27,19 +27,8 @@ class BottomWriteFragment : DialogFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_bottom_write, container, false)
-        view.toolbar.setNavigationIcon(R.drawable.ic_close_drawer)
-        view.toolbar.setNavigationOnClickListener { dismiss() }
-        view.phoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
-
-
-
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        toolbar.inflateMenu(R.menu.dialog_menu)
-        toolbar.setOnMenuItemClickListener {
+        view.closeBtn.setOnClickListener { dismiss() }
+        view.userAdd.setOnClickListener {
             val db = FirebaseFirestore.getInstance()
             val userId = arguments?.getString("userUid")
             val phoneNumber = view.phoneNumber.text.toString()
@@ -55,10 +44,12 @@ class BottomWriteFragment : DialogFragment() {
             view.name.text = Editable.Factory.getInstance().newEditable("")
 
             dismiss()
-            true
-
         }
+        view.phoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
 
+
+
+        return view
     }
 
     override fun onStart() {
