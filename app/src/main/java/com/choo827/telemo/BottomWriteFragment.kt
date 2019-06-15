@@ -19,6 +19,7 @@ class BottomWriteFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.FullScreenDialogStyle)
+//        dialog?.window?.attributes?.windowAnimations = R.style.FullScreenDialogStyle
     }
 
     override fun onCreateView(
@@ -58,7 +59,8 @@ class BottomWriteFragment : DialogFragment() {
         if (dialog != null) {
             val width = ViewGroup.LayoutParams.MATCH_PARENT
             val height = ViewGroup.LayoutParams.MATCH_PARENT
-            dialog.window.setLayout(width, height)
+            dialog.window?.setLayout(width, height)
+            dialog.window?.setWindowAnimations(R.style.AppTheme_Slide)
         }
     }
 

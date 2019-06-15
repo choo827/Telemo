@@ -37,10 +37,11 @@
 
         <!-- This is important! Don't forget to set window background -->
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
+    </style>
 
-        <!-- Additionally if you want animations when dialog opening -->
-        <!--<item name="android:windowEnterAnimation">@anim/slide_up</item>-->
-        <!--<item name="android:windowExitAnimation">@anim/slide_down</item>-->
+    <style name="AppTheme.Slide">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
     </style>
 
 </resources>
