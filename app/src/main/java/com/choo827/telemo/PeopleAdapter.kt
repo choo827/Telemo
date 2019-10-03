@@ -40,7 +40,7 @@ class PeopleAdapter(options: FirestoreRecyclerOptions<PhoneNumber>, userUid: Str
             val shareType = Intent(Intent.ACTION_SEND)
             shareType.type = "text/plain"
             shareType.putExtra(Intent.EXTRA_TEXT, phoneNumber.number)
-            val share = Intent.createChooser(shareType, "Title")
+            val share = Intent.createChooser(shareType, "연락처 공유")
             context.startActivity(share)
 
         }
