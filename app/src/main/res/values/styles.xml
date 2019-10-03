@@ -36,12 +36,20 @@
         <item name="android:windowIsFloating">false</item>
 
         <!-- This is important! Don't forget to set window background -->
-        <item name="android:windowBackground">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@android:color/white</item>
     </style>
 
     <style name="AppTheme.Slide">
         <item name="android:windowEnterAnimation">@anim/slide_up</item>
         <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
+    <style name="CounterStyle" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CounterOverflowStyle" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">#FF0000</item>
     </style>
 
 </resources>

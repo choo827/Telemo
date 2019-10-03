@@ -4,6 +4,7 @@ package com.choo827.telemo
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,9 +47,10 @@ class BottomWriteFragment : DialogFragment() {
 
             dismiss()
         }
+
         view.phoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
-
-
+        view.phoneNumber.addTextChangedListener(mTextWatcher)
+        view.name.addTextChangedListener(mTextWatcher)
 
         return view
     }
@@ -61,6 +63,31 @@ class BottomWriteFragment : DialogFragment() {
             val height = ViewGroup.LayoutParams.MATCH_PARENT
             dialog.window?.setLayout(width, height)
             dialog.window?.setWindowAnimations(R.style.AppTheme_Slide)
+        }
+    }
+
+    private val mTextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+
+        override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+
+        override fun afterTextChanged(editable: Editable) {
+            checkFieldsForEmptyValues()
+        }
+    }
+
+    private fun checkFieldsForEmptyValues() {
+        val numberString = phoneNumber.text.toString()
+        val nameString = name.text.toString()
+
+        if (numberString == "" || nameString == "") {
+            userAdd.isEnabled = false
+            userAdd.setBackgroundResource(R.drawable.btn_round)
+            userAdd.setImageResource(R.drawable.ic_user_plus)
+        } else {
+            userAdd.isEnabled = true
+            userAdd.setBackgroundResource(R.drawable.btn_active_round)
+            userAdd.setImageResource(R.drawable.ic_user_plus_active)
         }
     }
 
