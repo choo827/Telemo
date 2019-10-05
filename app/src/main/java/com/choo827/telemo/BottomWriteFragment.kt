@@ -30,6 +30,7 @@ class BottomWriteFragment : DialogFragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_bottom_write, container, false)
         view.closeBtn.setOnClickListener { dismiss() }
+        view.userAdd.isEnabled = false
         view.userAdd.setOnClickListener {
             val db = FirebaseFirestore.getInstance()
             val userId = arguments?.getString("userUid")

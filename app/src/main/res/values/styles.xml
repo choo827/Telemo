@@ -49,7 +49,7 @@
     </style>
 
     <style name="CounterOverflowStyle" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textColor">#FF0000</item>
+        <item name="android:textColor">#FF4136</item>
     </style>
 
 </resources>
