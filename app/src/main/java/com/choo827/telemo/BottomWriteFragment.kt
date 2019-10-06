@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_bottom_write.*
 import kotlinx.android.synthetic.main.fragment_bottom_write.view.*
@@ -16,11 +17,16 @@ import java.util.*
 
 
 class BottomWriteFragment : DialogFragment() {
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    var bundle = Bundle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setStyle(STYLE_NORMAL, R.style.FullScreenDialogStyle)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context!!)
 //        dialog?.window?.attributes?.windowAnimations = R.style.FullScreenDialogStyle
+
     }
 
     override fun onCreateView(
@@ -45,6 +51,7 @@ class BottomWriteFragment : DialogFragment() {
 
             view.phoneNumber.text = Editable.Factory.getInstance().newEditable("")
             view.name.text = Editable.Factory.getInstance().newEditable("")
+            firebaseAnalytics.logEvent("addPhoneNumber", bundle)
 
             dismiss()
         }

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private var adapter: PeopleAdapter? = null
     private var userUid: String = ""
     private var userEmail: String? = ""
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(bottomAppBar)
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         val auth = FirebaseAuth.getInstance()
         auth.addAuthStateListener { firebaseAuth ->
@@ -48,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             bundle.putString("userUid", userUid)
             bottomWriteFragment.arguments = bundle
             bottomWriteFragment.show(supportFragmentManager, bottomWriteFragment.tag)
+            firebaseAnalytics.logEvent("writePhoneNumber", bundle)
         }
 
 

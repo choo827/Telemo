@@ -6,7 +6,7 @@
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="#fff"
         tools:context=".AuthActivity">
     <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
@@ -42,7 +42,9 @@
             android:id="@+id/gBtn"
             android:background="@drawable/btn_conner"
             android:text="시작하기"
-            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:elevation="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="64dp"

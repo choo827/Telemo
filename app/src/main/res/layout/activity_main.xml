@@ -13,6 +13,8 @@
             android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             app:fabCradleMargin="8dp"
+            android:elevation="0dp"
+            app:fabCradleRoundedCornerRadius="2dp"
             android:layout_height="?actionBarSize"
             android:layout_gravity="bottom"
             app:backgroundTint="@color/colorPrimary"
@@ -64,6 +66,11 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add"
             app:fabSize="normal"
+            app:elevation="0dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:tint="@color/colorPrimary"
+            app:backgroundTint="@color/colorPrimary"
+            app:borderWidth="2dp"
             app:layout_anchor="@id/bottomAppBar"/>
     ​
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
