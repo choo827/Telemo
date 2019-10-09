@@ -69,6 +69,7 @@ class PeopleAdapter(numberList: ArrayList<PhoneNumber>, userUid: String, context
             }
             holder.deleteBtn.setOnClickListener {
                 db.collection(userUid).document(current.date).delete()
+                notifyItemRemoved(position)
             }
         }
     }
