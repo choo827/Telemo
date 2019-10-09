@@ -7,14 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.viewholer_people.view.*
+import kotlinx.android.synthetic.main.viewholder_header.view.*
+import kotlinx.android.synthetic.main.viewholder_people.view.*
 
+class PeopleAdapter(numberList: ArrayList<PhoneNumber>, userUid: String, context: Context) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-class PeopleAdapter(options: FirestoreRecyclerOptions<PhoneNumber>, userUid: String, context: Context) :
-    FirestoreRecyclerAdapter<PhoneNumber, PeopleAdapter.PeopleViewHolder>(options) {
+    var list: ArrayList<PhoneNumber>? = numberList
+    private val TYPE_HEADER = 0
+    private val TYPE_ITEMS = 1
     var userUid: String = ""
     var context: Context
 
@@ -23,52 +25,72 @@ class PeopleAdapter(options: FirestoreRecyclerOptions<PhoneNumber>, userUid: Str
         this.context = context
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleViewHolder {
-        return PeopleViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.viewholer_people, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            TYPE_HEADER -> {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.viewholder_header, parent, false)
+                HeaderViewHolder(view)
+            }
+            TYPE_ITEMS -> {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.viewholder_people, parent, false)
+                PeopleViewHolder(view)
+            }
+            else -> throw RuntimeException()
+        }
     }
 
-    override fun onBindViewHolder(peopleViewHolder: PeopleViewHolder, position: Int, phoneNumber: PhoneNumber) {
-        val db = FirebaseFirestore.getInstance()
-        peopleViewHolder.setPhoneBook(phoneNumber.name, phoneNumber.number, phoneNumber.etc)
-        if (phoneNumber.etc == "") {
-            peopleViewHolder.bottomMargin.visibility = View.VISIBLE
-            peopleViewHolder.etcTxt.visibility = View.GONE
-        }
-        peopleViewHolder.callBtn.setOnClickListener {
-            val call = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phoneNumber.number}"))
-            context.startActivity(call)
-        }
-        peopleViewHolder.shareBtn.setOnClickListener {
-            val shareType = Intent(Intent.ACTION_SEND)
-            shareType.type = "text/plain"
-            shareType.putExtra(Intent.EXTRA_TEXT, phoneNumber.number)
-            val share = Intent.createChooser(shareType, "연락처 공유")
-            context.startActivity(share)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is PeopleViewHolder) {
+            val db = FirebaseFirestore.getInstance()
+            val current = list!![position - 1]
 
-        }
-        peopleViewHolder.deleteBtn.setOnClickListener {
-            db.collection(userUid).document(phoneNumber.date).delete()
-        }
+            holder.numberTxt.text = current.number
+            holder.nameTxt.text = current.name
+            holder.etcTxt.text = current.etc
 
+            holder.callBtn.setOnClickListener {
+                val call = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${current.number}"))
+                context.startActivity(call)
+            }
+            holder.shareBtn.setOnClickListener {
+                val shareType = Intent(Intent.ACTION_SEND)
+                shareType.type = "text/plain"
+                shareType.putExtra(Intent.EXTRA_TEXT, current.number)
+                val share = Intent.createChooser(shareType, "연락처 공유")
+                context.startActivity(share)
+
+            }
+            holder.deleteBtn.setOnClickListener {
+                db.collection(userUid).document(current.date).delete()
+            }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (position == 0)
+            TYPE_HEADER
+        else TYPE_ITEMS
+    }
+
+    override fun getItemCount(): Int {
+        return list!!.size + 1
     }
 
     class PeopleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val callBtn = itemView.callBtn
         val shareBtn = itemView.shareBtn
         val deleteBtn = itemView.deleteBtn
-        val bottomMargin = itemView.bottomMargin
+        val nameTxt = itemView.holderName
+        val numberTxt = itemView.holderNumber
         val etcTxt = itemView.holderEtc
 
-        fun setPhoneBook(phoneName: String, phoneNumber: String, phoneEtc: String) {
-            val nameView = itemView.holderName
-            val phoneView = itemView.holderNumber
-            val etcView = itemView.holderEtc
-
-            nameView.text = phoneName
-            phoneView.text = phoneNumber
-            etcView.text = phoneEtc
-        }
     }
 
+    class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val titleTxt = itemView.title
 
+    }
 }
+

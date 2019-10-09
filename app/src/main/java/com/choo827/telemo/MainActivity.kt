@@ -3,13 +3,10 @@ package com.choo827.telemo
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -22,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private var userUid: String = ""
     private var userEmail: String? = ""
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private val numberList = ArrayList<PhoneNumber>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,12 +56,20 @@ class MainActivity : AppCompatActivity() {
 
         val db = FirebaseFirestore.getInstance()
         val query = db.collection(userUid)
-        val options = FirestoreRecyclerOptions.Builder<PhoneNumber>()
-            .setQuery(query, PhoneNumber::class.java).build()
 
-        adapter = PeopleAdapter(options, userUid, this)
+        adapter = PeopleAdapter(numberList, userUid, this)
         rvMain.adapter = adapter
         rvMain.layoutManager = LinearLayoutManager(this)
+
+        db.collection(userUid).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            numberList.clear()
+            for (item in querySnapshot!!.documents) {
+                val phoneNumber = item.toObject(PhoneNumber::class.java)
+                numberList.add(phoneNumber!!)
+            }
+            rvMain.adapter!!.notifyDataSetChanged()
+        }
+
 
         query.addSnapshotListener { snapshot, _ ->
             if (snapshot != null) {
@@ -92,19 +98,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         return true
-    }
-
-    override fun onStart() {
-        super.onStart()
-        adapter!!.startListening()
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        if (adapter != null) {
-            adapter!!.stopListening()
-        }
     }
 
     companion object {
