@@ -50,6 +50,11 @@ class PeopleAdapter(numberList: ArrayList<PhoneNumber>, userUid: String, context
             holder.nameTxt.text = current.name
             holder.etcTxt.text = current.etc
 
+            if (current.etc == "") {
+                holder.bottomMargin.visibility = View.VISIBLE
+                holder.etcTxt.visibility = View.GONE
+            }
+
             holder.callBtn.setOnClickListener {
                 val call = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${current.number}"))
                 context.startActivity(call)
@@ -85,6 +90,7 @@ class PeopleAdapter(numberList: ArrayList<PhoneNumber>, userUid: String, context
         val nameTxt = itemView.holderName
         val numberTxt = itemView.holderNumber
         val etcTxt = itemView.holderEtc
+        val bottomMargin = itemView.bottomMargin
 
     }
 

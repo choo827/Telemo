@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         rvMain.adapter = adapter
         rvMain.layoutManager = LinearLayoutManager(this)
 
-        db.collection(userUid).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+        db.collection(userUid).addSnapshotListener { querySnapshot, _ ->
             numberList.clear()
             for (item in querySnapshot!!.documents) {
                 val phoneNumber = item.toObject(PhoneNumber::class.java)
