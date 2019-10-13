@@ -18,7 +18,7 @@
             app:buttonGravity="bottom|top"
             app:fabAlignmentMode="center"
             app:fabCradleMargin="8dp"
-            app:fabCradleRoundedCornerRadius="2dp"
+            app:fabCradleRoundedCornerRadius="16dp"
             app:hideOnScroll="true"
             app:layout_scrollFlags="scroll|enterAlways"
             app:navigationIcon="@drawable/ic_menu" />
@@ -75,10 +75,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add"
-            app:elevation="20dp"
             app:fabSize="normal"
             app:layout_anchor="@id/bottomAppBar"
-            app:backgroundTint="@color/colorPrimaryDark"
+            app:backgroundTint="#000"
             android:layout_margin="4dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
