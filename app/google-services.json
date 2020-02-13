@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "934914239470-8pvqevoumvcjqir7e3g7phr83ts45mcn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.choo827.telemo",
+            "certificate_hash": "ddd60900d433b3f8eaaea9249ffd16b2d121c2b5"
+          }
+        },
+        {
           "client_id": "934914239470-e0r9d8a05k66lltf1herg8dtcke0dpb9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
