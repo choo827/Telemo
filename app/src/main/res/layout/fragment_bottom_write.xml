@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -13,7 +14,7 @@
                 android:id="@+id/closeBtn"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="#00ff0000"
                 android:src="@drawable/ic_close_drawer"
@@ -25,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="56dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/btn_round"
                 android:src="@drawable/ic_user_plus"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +36,7 @@
                 android:id="@+id/viewTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="연락처 추가"
                 android:textColor="#000000"
@@ -48,9 +49,9 @@
                 android:id="@+id/phoneNumber"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="16dp"
                 android:background="@null"
                 android:drawableStart="@drawable/ic_smartphone"
                 android:drawablePadding="16dp"
@@ -68,9 +69,9 @@
                 android:id="@+id/name"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="16dp"
                 android:background="@null"
                 android:drawableStart="@drawable/ic_user"
                 android:drawablePadding="16dp"
@@ -82,40 +83,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etc"
                 android:layout_width="0dp"
-                android:layout_height="64dp"
-                android:layout_marginStart="24dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
-                app:counterOverflowTextAppearance="@style/CounterOverflowStyle"
-                app:counterTextAppearance="@style/CounterStyle"
-                app:hintEnabled="false"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:drawableStart="@drawable/ic_file"
+                android:drawablePadding="16dp"
+                android:gravity="start|center"
+                android:hint="메모"
+                android:minHeight="48dp"
+                android:textColor="#000"
+                android:textColorHint="#aaaaaa"
+                android:textSize="21sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name">
+                app:layout_constraintTop_toBottomOf="@+id/name" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etc"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_margin="0dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@null"
-                    android:drawableStart="@drawable/ic_file"
-                    android:drawablePadding="16dp"
-                    android:hint="추가정보"
-                    android:textColor="#000"
-                    android:textColorHint="#aaaaaa"
-                    android:textSize="21sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/name" />
-
-        </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
