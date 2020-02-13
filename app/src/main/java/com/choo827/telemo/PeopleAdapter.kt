@@ -7,21 +7,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.viewholder_header.view.*
 import kotlinx.android.synthetic.main.viewholder_people.view.*
 
-class PeopleAdapter(numberList: ArrayList<PhoneNumber>, userUid: String, context: Context) :
+class PeopleAdapter(
+    numberList: ArrayList<PhoneNumber>,
+    userUid: String,
+    userUrl: String,
+    context: Context
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var list: ArrayList<PhoneNumber>? = numberList
     private val TYPE_HEADER = 0
     private val TYPE_ITEMS = 1
     var userUid: String = ""
+    var userUrl: String = ""
     var context: Context
 
     init {
         this.userUid = userUid
+        this.userUrl = userUrl
         this.context = context
     }
 
@@ -71,6 +81,11 @@ class PeopleAdapter(numberList: ArrayList<PhoneNumber>, userUid: String, context
                 db.collection(userUid).document(current.date).delete()
                 notifyItemRemoved(position)
             }
+        } else {
+            Glide.with(context)
+                .load(userUrl)
+                .apply(RequestOptions.circleCropTransform())
+                .into(holder.itemView.photo)
         }
     }
 
@@ -97,6 +112,7 @@ class PeopleAdapter(numberList: ArrayList<PhoneNumber>, userUid: String, context
 
     class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTxt = itemView.title
+        val photo = itemView.photo
 
     }
 }

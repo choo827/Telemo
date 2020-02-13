@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private var adapter: PeopleAdapter? = null
     private var userUid: String = ""
     private var userEmail: String? = ""
+    private var userPhoto: String = ""
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private val numberList = ArrayList<PhoneNumber>()
 
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         if (user != null) {
             userUid = user.uid
             userEmail = user.email
+            userPhoto = user.photoUrl.toString()
         }
 
         addBtn.setOnClickListener {
@@ -57,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         val query = db.collection(userUid)
 
-        adapter = PeopleAdapter(numberList, userUid, this)
+        adapter = PeopleAdapter(numberList, userUid, userPhoto,this)
         rvMain.adapter = adapter
         rvMain.layoutManager = LinearLayoutManager(this)
 
