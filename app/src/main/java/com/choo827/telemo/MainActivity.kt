@@ -3,10 +3,10 @@ package com.choo827.telemo
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -60,6 +60,20 @@ class MainActivity : AppCompatActivity() {
         adapter = PeopleAdapter(numberList, userUid, userPhoto,this)
         rvMain.adapter = adapter
         rvMain.layoutManager = LinearLayoutManager(this)
+        rvMain.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0 || dy < 0 && addBtn.isShown) {
+                    addBtn.hide()
+                }
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    addBtn.show()
+                }
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
 
         db.collection(userUid).addSnapshotListener { querySnapshot, _ ->
             numberList.clear()
