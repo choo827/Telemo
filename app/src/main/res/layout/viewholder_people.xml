@@ -39,7 +39,7 @@
                 android:fontFamily="@font/inter_bold"
                 android:gravity="top"
                 android:text="010-1234-5678"
-                android:textColor="#000"
+                android:textColor="@color/black"
                 android:textSize="21sp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@+id/holderEtc"

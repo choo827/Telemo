@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setSupportActionBar(bottomAppBar)
-
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         val auth = FirebaseAuth.getInstance()
@@ -87,20 +85,6 @@ class MainActivity : AppCompatActivity() {
 //    private fun switchToAddFragment() {
 //        supportFragmentManager.beginTransaction().replace(R.id.content_layout, AddFragment()).commit()
 //    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
-                val bundle = Bundle(1)
-                bundle.putString("userEmail", userEmail)
-                bottomNavDrawerFragment.arguments = bundle
-                bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
-            }
-        }
-
-        return true
-    }
 
     companion object {
         fun getLaunchIntent(from: Context) = Intent(from, MainActivity::class.java).apply {
