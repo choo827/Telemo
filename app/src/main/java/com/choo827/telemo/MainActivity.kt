@@ -2,12 +2,12 @@ package com.choo827.telemo
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,11 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.content_write.closeBtn
-import kotlinx.android.synthetic.main.content_write.etc
-import kotlinx.android.synthetic.main.content_write.name
-import kotlinx.android.synthetic.main.content_write.phoneNumber
-import kotlinx.android.synthetic.main.content_write.userAdd
+import kotlinx.android.synthetic.main.content_write.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -58,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         addBtn.setOnClickListener {
             addBtn.isExpanded = true
             include.visibility = View.GONE
+            showKeyboard()
 //            firebaseAnalytics.logEvent("writePhoneNumber", bundle)
         }
 
@@ -106,10 +103,12 @@ class MainActivity : AppCompatActivity() {
         closeBtn.setOnClickListener {
             addBtn.isExpanded = false
             include.visibility = View.VISIBLE
+            closeKeyboard()
 
         }
         userAdd.isEnabled = false
         userAdd.setOnClickListener {
+            closeKeyboard()
             val phoneString = phoneNumber.text.toString()
             val nameString = name.text.toString()
             val etcString = etc.text.toString()
@@ -125,7 +124,6 @@ class MainActivity : AppCompatActivity() {
 //            firebaseAnalytics.logEvent("addPhoneNumber", bundle)
             addBtn.isExpanded = false
             include.visibility = View.VISIBLE
-
         }
 
         phoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
@@ -204,5 +202,15 @@ class MainActivity : AppCompatActivity() {
         } else {
             finish()
         }
+    }
+
+    fun showKeyboard() {
+        val inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+    }
+
+    fun closeKeyboard() {
+        val inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
     }
 }
