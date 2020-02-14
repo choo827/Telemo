@@ -91,11 +91,11 @@ class BottomWriteFragment : DialogFragment() {
         if (numberString == "" || nameString == "") {
             userAdd.isEnabled = false
             userAdd.setBackgroundResource(R.drawable.btn_round)
-            userAdd.setImageResource(R.drawable.ic_user_plus)
+            userAdd.setImageResource(R.drawable.ic_add)
         } else {
             userAdd.isEnabled = true
             userAdd.setBackgroundResource(R.drawable.btn_active_round)
-            userAdd.setImageResource(R.drawable.ic_user_plus_active)
+            userAdd.setImageResource(R.drawable.ic_add)
         }
     }
 
