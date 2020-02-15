@@ -14,11 +14,7 @@ Google play에 올리는 것
 - Firebase Analytics
 - 스토어 등록
 
-## 🚮 아이콘
-[Unicons icons](https://iconscout.com/unicons)
-
-## 🎨 색상
-[Colors](http://clrs.cc/)
-
-## 🖼 일러스트
-[DrawKit](https://www.drawkit.io/)
+## 🔭 참고한 사이트
+- 🚮 아이콘: [Unicons icons](https://iconscout.com/unicons)
+- 🎨 색상: [Colors](http://clrs.cc/)
+- 🖼 일러스트: [DrawKit](https://www.drawkit.io/)
