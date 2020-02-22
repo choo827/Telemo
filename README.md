@@ -1,5 +1,5 @@
 # Telemo
-<a href='https://play.google.com/store/apps/details?id=com.choo827.telemo&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+<a href='https://play.google.com/store/apps/details?id=com.choo827.telemo&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="240px"/></a>
 
 Telemo는 간단한 연락처 메모장으로 연락처를 저장했을 때 카카오톡에 자동 연동되는 것을 방지하기 위해 만든 앱입니다.
 
