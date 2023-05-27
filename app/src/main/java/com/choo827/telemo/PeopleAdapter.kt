@@ -8,11 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.RequestOptions
+import com.choo827.telemo.databinding.ViewholderHeaderBinding
+import com.choo827.telemo.databinding.ViewholderPeopleBinding
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.viewholder_header.view.*
-import kotlinx.android.synthetic.main.viewholder_people.view.*
 
 class PeopleAdapter(
     numberList: ArrayList<PhoneNumber>,
@@ -38,15 +37,23 @@ class PeopleAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TYPE_HEADER -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.viewholder_header, parent, false)
-                HeaderViewHolder(view)
+                val binding = ViewholderHeaderBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                HeaderViewHolder(binding)
             }
+
             TYPE_ITEMS -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.viewholder_people, parent, false)
-                PeopleViewHolder(view)
+                val binding = ViewholderPeopleBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                PeopleViewHolder(binding)
             }
+
             else -> throw RuntimeException()
         }
     }
@@ -85,7 +92,7 @@ class PeopleAdapter(
             Glide.with(context)
                 .load(userUrl)
                 .apply(RequestOptions.circleCropTransform())
-                .into(holder.itemView.photo)
+                .into(holder.itemView.findViewById(R.id.photo))
         }
     }
 
@@ -99,20 +106,20 @@ class PeopleAdapter(
         return list!!.size + 1
     }
 
-    class PeopleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val callBtn = itemView.callBtn
-        val shareBtn = itemView.shareBtn
-        val deleteBtn = itemView.deleteBtn
-        val nameTxt = itemView.holderName
-        val numberTxt = itemView.holderNumber
-        val etcTxt = itemView.holderEtc
-        val bottomMargin = itemView.bottomMargin
+    class PeopleViewHolder(binding: ViewholderPeopleBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        val callBtn = binding.callBtn
+        val shareBtn = binding.shareBtn
+        val deleteBtn = binding.deleteBtn
+        val nameTxt = binding.holderName
+        val numberTxt = binding.holderNumber
+        val etcTxt = binding.holderEtc
+        val bottomMargin = binding.bottomMargin
 
     }
 
-    class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val titleTxt = itemView.title
-        val photo = itemView.photo
+    class HeaderViewHolder(binding: ViewholderHeaderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
     }
 }

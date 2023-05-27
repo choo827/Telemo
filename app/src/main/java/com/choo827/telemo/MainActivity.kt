@@ -9,16 +9,15 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.choo827.telemo.databinding.ActivityMainBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.content_write.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,11 +27,12 @@ class MainActivity : AppCompatActivity() {
     private var userPhoto: String = ""
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private val numberList = ArrayList<PhoneNumber>()
-
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
@@ -51,9 +51,9 @@ class MainActivity : AppCompatActivity() {
             userPhoto = user.photoUrl.toString()
         }
 
-        addBtn.setOnClickListener {
-            addBtn.isExpanded = true
-            include.visibility = View.GONE
+        binding.addBtn.setOnClickListener {
+            binding.addBtn.isExpanded = true
+            binding.include.root.visibility = View.GONE
             showKeyboard()
 //            firebaseAnalytics.logEvent("writePhoneNumber", bundle)
         }
@@ -63,18 +63,21 @@ class MainActivity : AppCompatActivity() {
         val query = db.collection(userUid)
 
         adapter = PeopleAdapter(numberList, userUid, userPhoto, this)
+
+
+        val rvMain: RecyclerView = findViewById(R.id.rvMain)
         rvMain.adapter = adapter
         rvMain.layoutManager = LinearLayoutManager(this)
         rvMain.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0 || dy < 0 && addBtn.isShown) {
-                    addBtn.hide()
+                if (dy > 0 || dy < 0 && binding.addBtn.isShown) {
+                    binding.addBtn.hide()
                 }
             }
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    addBtn.show()
+                    binding.addBtn.show()
                 }
                 super.onScrollStateChanged(recyclerView, newState)
             }
@@ -93,19 +96,25 @@ class MainActivity : AppCompatActivity() {
         query.addSnapshotListener { snapshot, _ ->
             if (snapshot != null) {
                 if (snapshot.isEmpty) {
-                    noData.visibility = View.VISIBLE
+                    binding.noData.visibility = View.VISIBLE
                 } else {
-                    noData.visibility = View.GONE
+                    binding.noData.visibility = View.GONE
                 }
             }
         }
 
+        val closeBtn: AppCompatImageButton = findViewById(R.id.closeBtn)
         closeBtn.setOnClickListener {
-            addBtn.isExpanded = false
-            include.visibility = View.VISIBLE
+            binding.addBtn.isExpanded = false
+            binding.include.root.visibility = View.VISIBLE
             closeKeyboard()
 
         }
+        val phoneNumber: AppCompatEditText = findViewById(R.id.phoneNumber)
+        val name: AppCompatEditText = findViewById(R.id.name)
+        val etc: AppCompatEditText = findViewById(R.id.etc)
+
+        val userAdd: AppCompatImageButton = findViewById(R.id.userAdd)
         userAdd.isEnabled = false
         userAdd.setOnClickListener {
             closeKeyboard()
@@ -122,8 +131,8 @@ class MainActivity : AppCompatActivity() {
             name.text = Editable.Factory.getInstance().newEditable("")
             etc.text = Editable.Factory.getInstance().newEditable("")
 //            firebaseAnalytics.logEvent("addPhoneNumber", bundle)
-            addBtn.isExpanded = false
-            include.visibility = View.VISIBLE
+            binding.addBtn.isExpanded = false
+            binding.include.root.visibility = View.VISIBLE
         }
 
         phoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
@@ -142,6 +151,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkFieldsForEmptyValues() {
+        val phoneNumber: AppCompatEditText = findViewById(R.id.phoneNumber)
+        val name: AppCompatEditText = findViewById(R.id.name)
+        val userAdd: AppCompatImageButton = findViewById(R.id.userAdd)
+
         val numberString = phoneNumber.text.toString()
         val nameString = name.text.toString()
 
@@ -194,10 +207,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        if (addBtn.isExpanded) {
-            addBtn.isExpanded = false
-            include.visibility = View.VISIBLE
+        if (binding.addBtn.isExpanded) {
+            binding.addBtn.isExpanded = false
+            binding.include.root.visibility = View.VISIBLE
 
         } else {
             finish()
@@ -205,12 +219,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun showKeyboard() {
-        val inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager: InputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
 
     fun closeKeyboard() {
-        val inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager: InputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
     }
 }
